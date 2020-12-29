@@ -36,12 +36,4 @@ RSpec.describe '/plants', type: :request do
       expect(parsed_response['message']).to include 'unpermitted parameter'
     end
   end
-
-  # describe "GET /show" do
-  #   it "renders a successful response" do
-  #     search = Search.create! valid_attributes
-  #     get plants_url(search), as: :json
-  #     expect(response).to be_successful
-  #   end
-  # end
 end

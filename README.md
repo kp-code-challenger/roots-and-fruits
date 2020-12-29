@@ -1,6 +1,9 @@
 # Roots and Fruits
-
 ### The contrived edible plant API!
+
+* Heroku URL: https://roots-and-fruits.herokuapp.com/plants
+
+* What is it? See spec/regresssion/app_spec.rb for capabilities. It's basically a thin caching layer over the Trefle API.
 
 * Ruby version: 2.7
 
