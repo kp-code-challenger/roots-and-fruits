@@ -10,7 +10,7 @@ Needs a `TREFLE_TOKEN` for the app to work. I set it in my ~/.bashrc, but I'd no
 Typical PostgreSQL `rails db:create`, `rails db:test:prepare`
 
 * How to run the test suite
-`rspec spec`
+`rspec`
 
 * Deployment instructions
 Push to Heroku, `rails db:migrate` and make sure to set any desired ENV vars
