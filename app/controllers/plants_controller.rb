@@ -4,7 +4,7 @@ class PlantsController < ApplicationController
   end
 
   def index
-    render json: TrefleRequest.new('/plants', search_params).perform
+    render json: ::CachedPlantSearch.new(search_params)
   end
 
   private

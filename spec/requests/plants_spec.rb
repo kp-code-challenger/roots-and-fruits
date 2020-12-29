@@ -10,7 +10,7 @@ RSpec.describe '/plants', type: :request do
 
   let(:valid_search) { Search.create!(search_attributes) }
 
-  let(:mock_api_response) { double(:api_response) }
+  let(:mock_api_response) { double(:api_response, body: '{}', code: 200) }
 
   describe 'GET /plants' do
     before do
