@@ -43,10 +43,7 @@ RSpec.describe CachedPlantSearch, type: :service do
     expect(TrefleRequest).to receive(:get).and_return(api_response)
 
     expect { service.perform }.to change(Search, :count).by(1)
-
-    service = described_class.new(params.merge(page: 1))
-
-    expect { service.perform }.not_to change(Search, :count)
+    expect { described_class.new(params.merge(page: 1)).perform }.not_to change(Search, :count)
   end
 
   it 'sorts the params so the order does not matter' do
@@ -55,5 +52,18 @@ RSpec.describe CachedPlantSearch, type: :service do
     described_class.new({ page: 1 }.merge(params)).perform
 
     expect(Search.last.query).to eq existing_search.query
+  end
+
+  context 'cache TTL' do
+    it 'makes a new api call after cache expiration' do
+      expect(TrefleRequest).to receive(:get).and_return(api_response).twice
+
+      Timecop.freeze(5.hours.ago) do
+        expect { described_class.new(params).perform }.to change(Search, :count).by(1)
+        expect { described_class.new(params).perform }.not_to change(Search, :count)
+      end
+
+      expect { described_class.new(params).perform }.to change(Search, :count).by(1)
+    end
   end
 end
