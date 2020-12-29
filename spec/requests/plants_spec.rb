@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "/plants", type: :request do
+RSpec.describe '/plants', type: :request do
   let(:valid_attributes) {
     {
       query: '?someting',
@@ -8,8 +8,8 @@ RSpec.describe "/plants", type: :request do
     }
   }
 
-  describe "GET /plants" do
-    it "renders a successful response" do
+  describe 'GET /plants' do
+    it 'renders a successful response' do
       Search.create! valid_attributes
       get plants_url, headers: {}, as: :json
       expect(response).to be_successful

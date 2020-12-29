@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
-
-* System dependencies
+2.7
 
 * Configuration
+Needs a `TREFLE_TOKEN` for the app to work. I set it in my ~/.bashrc, but I'd normally use dotenv gem or similar for dev/test envs.
 
 * Database creation
-
-* Database initialization
+Typical PostgreSQL `rails db:create`, `rails db:test:prepare`
 
 * How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+`rspec spec`
 
 * Deployment instructions
-
-* ...
+Push to Heroku, `rails db:migrate` and make sure to set any desired ENV vars
