@@ -9,7 +9,7 @@ class CachedPlantSearch
   def initialize(action_controller_params)
     @params = action_controller_params.to_h
     set_edible_default
-    @trefle_request = TrefleRequest.new('/plants', params)
+    @trefle_request = TrefleRequest.new(determine_path, params)
     @cached_response = CachedResponse.new.tap { |c| c.code = 200 }
   end
 
@@ -27,6 +27,12 @@ class CachedPlantSearch
   end
 
   protected
+
+  def determine_path
+    return "/distributions/#{params.dig(:filter, :zone_id)}/plants" if params.dig(:filter, :zone_id)
+
+    '/plants'
+  end
 
   def set_edible_default
     params[:filter] ||= {}
@@ -49,7 +55,7 @@ class CachedPlantSearch
   end
 
   def ordered_query
-    @ordered_query ||= (sorted_hash_params + [page_param]).reject(&:blank?).join('&')
+    @ordered_query ||= (sorted_hash_params + single_params).reject(&:blank?).join('&')
   end
 
   def sorted_hash_params
@@ -58,8 +64,16 @@ class CachedPlantSearch
     end
   end
 
+  def single_params
+    [page_param, id_param]
+  end
+
   def page_param
     "page=#{params.fetch(:page, 1)}"
+  end
+
+  def id_param
+    params[:id] ? "id=#{params[:id]}" : ''
   end
 
   def newer_than_time

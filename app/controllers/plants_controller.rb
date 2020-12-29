@@ -7,6 +7,10 @@ class PlantsController < ApplicationController
     render json: ::CachedPlantSearch.new(search_params)
   end
 
+  def show
+    render json: ::CachedPlantSearch.new(id: params[:id])
+  end
+
   private
 
   def search_params

@@ -8,6 +8,12 @@ class TrefleRequest
   def initialize(path, query)
     @path = path
     @query = query
+
+    # if show resource, disregard other params
+    return unless query[:id]
+
+    @path = "/plants/#{query[:id]}"
+    @query = {}
   end
 
   def perform
