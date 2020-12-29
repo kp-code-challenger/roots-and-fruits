@@ -3,7 +3,7 @@
 
 * Heroku URL: https://roots-and-fruits.herokuapp.com/plants
 
-* What is it? See spec/regresssion/app_spec.rb for capabilities. It's basically a thin caching layer over the Trefle API.
+* What is it? See [the specs](https://github.com/kp-code-challenger/roots-and-fruits/blob/main/spec/regression/app_spec.rb) for capabilities. It's basically a thin caching layer over the Trefle API.
 
 * Ruby version: 2.7
 
